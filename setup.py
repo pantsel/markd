@@ -8,18 +8,18 @@ def envstring(var): return os.environ.get(var) or ""
 
 try:
     with open("README.md", "r") as fh:
-        long_description = fh.read()
-except:
-    long_description = ""
+        LONG_DESCRIPTION = fh.read()
+except FileNotFoundError:
+    LONG_DESCRIPTION = ""
 
 if os.path.isfile("variables"):
     try:
         with open("variables", "r") as fh:
-            variables = fh.read().strip().split("\n")
-        for v in variables:
+            VARIABLES = fh.read().strip().split("\n")
+        for v in VARIABLES:
             key, value = v.split("=")
             os.environ[key] = re.sub("['\"]", "", value)
-    except:
+    except FileNotFoundError:
         pass
 
 setuptools.setup(
@@ -29,7 +29,7 @@ setuptools.setup(
     author_email=envstring("AUTHOR_EMAIL"),
     description=envstring("DESCRIPTION"),
     url=envstring("URL"),
-    long_description=long_description,
+    long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
     packages=[envstring("NAME"), envstring("NAME") + ".main"],
     classifiers=[
