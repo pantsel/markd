@@ -74,8 +74,7 @@ module:
 
 .PHONY: pylint
 pylint:
-	cd ./module \
-		&& pylint --output-format=text * -f parseable
+	cd ./module && pylint --output-format=text * -f parseable
 
 .PHONY: upload
 # upload:
