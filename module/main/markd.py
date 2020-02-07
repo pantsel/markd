@@ -1,69 +1,147 @@
-import os, time
+"""
+THIS SOFTWARE IS PROVIDED AS IS
+and under GNU General Public License. <https://www.gnu.org/licenses/gpl-3.0.en.html>
+USE IT AT YOUR OWN RISK.
+
+Markd is a simple python module that facilitates the generation of Markdown flavoured documents.
+
+"""
+
+import os
 import inspect
+import errno
 
 class Markdown():
-    
+    """
+    Markdown class: initializes the markdown file content.
+    """
+
     def __init__(self):
         self.content = ""
 
     def add_text(self, text):
-        self.content += self.__create_block(text, 2)
+        """
+        Adds a text block to the content
+        :param text: The text to add
+        """
+        self.content += self.create_block(text, 2)
         return self
 
     def add_list_item(self, text):
-        self.content += self.__create_block("- {}".format(text))
-        return self
-    
-    def add_linebreak(self):
-        self.content += self.__create_block("", 1)
-        return self
-    
-    def add_blockquote(self, text):
-        self.content += self.__create_block("> " + text, 2)
+        """
+        Adds a list item to the content
+        :param text: The list item's text
+        """
+        self.content += self.create_block("- {}".format(text))
         return self
 
-    def add_header(self, text, h=1):
-        string = "".join(["#"] * h) + " {t}".format(t=text)
-        self.content += self.__create_block(string, 2)
+    def add_linebreak(self):
+        """
+        Adds a line break block to the content
+        """
+        self.content += self.create_block("", 1)
         return self
-    
+
+    def add_blockquote(self, text):
+        """
+        Adds a blockquote to the content
+        :param text: The blockquote's text
+        """
+        self.content += self.create_block("> " + text, 2)
+        return self
+
+    def add_header(self, text, htype=1):
+        """
+        Adds a header block to the content
+        :param text: The headers's text
+        :param htype: The header type || h1(htype=1), h2(htype=2) etc...
+        """
+        string = "".join(["#"] * htype) + " {t}".format(t=text)
+        self.content += self.create_block(string, 2)
+        return self
+
     def add_horizontal_rule(self):
-        self.content += self.__create_block("___")
+        """
+        Adds a horizontal rule block to the content
+        """
+        self.content += self.create_block("___")
         return self
-    
+
     def add_code(self, code):
+        """
+        Adds a code block to the content
+        :param code: The codeblock's content
+        """
         codeblock = inspect.cleandoc(
             """```code
             {c}
             ```""").format(c=code.lstrip().rstrip())
-        self.content += self.__create_block(codeblock, 2)
+        self.content += self.create_block(codeblock, 2)
         return self
 
     def add_image(self, url, alt_text):
-        self.content += self.__create_block("![{}]({})".format(alt_text, url), 2)
+        """
+        Adds an image to the content
+        :param url     : The image url
+        :param alt_text: The image alt_text
+        """
+        self.content += self.create_block("![{}]({})".format(alt_text, url), 2)
         return self
 
-    def link(self, link, text=None):
-        t = text if text is not None else link
-        return "[{}]({})".format(t, link)
+    @staticmethod
+    def link(link, text=None):
+        """
+        Creates a markdown link that can be added in the content
+        using the available add_* methods
+        ex. markd.add_text(markd.link('https://something.io', 'Get me there!'))
+        :param link: The link url
+        :param text: Optional text to show
 
-    def emphasis(self, text):
+        :return: A markdown link string
+        """
+        linktext = text if text is not None else link
+        return "[{}]({})".format(linktext, link)
+
+    @staticmethod
+    def emphasis(text):
+        """
+        Emphasizes a given text
+        ex. markd.add_text(markd.emphasis('This text block will be emphasized'))
+        :param text: The text to be emphazised
+
+        :return: An emphazised string
+        """
         return "**{}**".format(text)
-    
-    def italics(self, text):
+
+    @staticmethod
+    def italics(text):
+        """
+        Wraps the given text in asteriscks
+        :param text: The text to wrap
+        ex. markd.add_text(markd.italics('Like the tower of Pisa!'))
+        """
         return "*{}*".format(text)
 
-    def __create_block(self, text='', times=1):
-        return text + "".join(['\n'] * times)
-    
+    @classmethod
+    def create_block(cls, text='', lbcount=1):
+        """
+        Appends linebreaks to the given text
+        :param text: The input text
+        :param times: The number of linebreaks that will be appended
+        """
+        return text + "".join(['\n'] * lbcount)
+
     def save(self, filename):
+        """
+        Saves the file
+        :param filename: The full path of the destination file
+        """
         if not os.path.exists(filename):
             try:
                 os.makedirs(os.path.dirname(filename), exist_ok=True)
             except OSError as exc: # Guard against race condition
                 if exc.errno != errno.EEXIST:
                     raise
-                
-        f = open(filename, "w")
-        f.write(self.content)
-        f.close()
+        file = open(filename, "w")
+        file.write(self.content)
+        file.close()
