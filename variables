@@ -1,6 +1,7 @@
 NAME="markd"
-VERSION=0.1.0
+VERSION="0.1.6"
 AUTHOR="Panagis Tselentis"
 AUTHOR_EMAIL="tselentispanagis@gmail.com"
-DESCRIPTION="A simple python markdown files generator."
-URL="https://gitlab.com/hyperd/piphyperd"
+DESCRIPTION="A simple python markdown files generator"
+URL="https://github.com/pantsel/markd"
+LICENCE="GNU General Public License v3 (GPLv3)"

@@ -1,16 +1,20 @@
+"""
+Project setup
+"""
 import os
 import re
 import setuptools
 
+def envstring(var):
+    """
+    Get environment variable
+    """
+    return os.environ.get(var) or ""
 
-def envstring(var): return os.environ.get(var) or ""
-
-
-try:
-    with open("README.md", "r") as fh:
-        LONG_DESCRIPTION = fh.read()
-except FileNotFoundError:
-    LONG_DESCRIPTION = ""
+# read the contents of your README file
+CWD = os.path.abspath(os.path.dirname(__file__))
+with open(os.path.join(CWD, 'README.md'), encoding='utf-8') as f:
+    LONG_DESCRIPTION = f.read()
 
 if os.path.isfile("variables"):
     try:
@@ -22,6 +26,8 @@ if os.path.isfile("variables"):
     except FileNotFoundError:
         pass
 
+
+
 setuptools.setup(
     name=envstring("NAME"),
     version=envstring("VERSION"),
@@ -32,6 +38,7 @@ setuptools.setup(
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
     packages=[envstring("NAME"), envstring("NAME") + ".main"],
+    license=envstring("LICENCE"),
     classifiers=[
         'Operating System :: OS Independent',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
