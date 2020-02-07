@@ -12,23 +12,41 @@ $ pip install markd
 
 ### Add block methods
 
-> **add_header(text, htype=1)**  
-> Adds an `htype` header block to the content  
-> ex: `add_header("H1"), add_header("H2", 2)`
+#### add_header(text, htype=1)
+
+Adds an `htype` header block to the content  
+
+ex: `add_header("H1"), add_header("H2", 2)`
 
 #### add_text(text)
 
+Adds a text block to the content
+
 #### add_list_item(text, depth=None)
+
+Adds a list item to the content with the specified `text` and intentation `depth`
+
+ex: `add_list_item("List item 1"), add_list_item("List item 1.1", 1)`
 
 #### add_linebreak()
 
+Adds a linebreak block
+
 #### add_blockquote(text)
+
+Adds a blockquote with the specified `text`
 
 #### add_horizontal_rule()
 
-#### add_code(text)
+Adds a horizontal rule block
+
+#### add_code(code)
+
+Adds a code block
 
 #### add_image(url, alt_text)
+
+Adds an image using the specified `url` and `alt_text`
 
 ### Utility methods
 
