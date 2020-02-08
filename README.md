@@ -150,3 +150,7 @@ if __name__ == '__main__':
     print(markd.content) # Get the content
     markd.save("/path/to/save/the/file.md")
 ```
+
+## License
+
+[GNU General Public License v3 (GPLv3)](https://github.com/panstel/markd/blob/master/LICENSE)
