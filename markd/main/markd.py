@@ -19,6 +19,16 @@ class Markdown():
     def __init__(self):
         self.content = ""
 
+    def add_header(self, text, htype=1):
+        """
+        Adds a header block to the content
+        :param text: The headers's text
+        :param htype: The header type || h1(htype=1), h2(htype=2) etc...
+        """
+        string = "".join(["#"] * htype) + " {t}".format(t=text)
+        self.content += self.create_block(string, 2)
+        return self
+
     def add_text(self, text):
         """
         Adds a text block to the content
@@ -27,12 +37,17 @@ class Markdown():
         self.content += self.create_block(text, 2)
         return self
 
-    def add_list_item(self, text):
+    def add_list_item(self, text, depth=None):
         """
         Adds a list item to the content
         :param text: The list item's text
+        :param depth: The intentation depth of the list item
         """
-        self.content += self.create_block("- {}".format(text))
+        intent = ""
+        if depth is not None:
+            intent = "".join([" " * 2] * depth)
+
+        self.content += self.create_block(intent + "- {}".format(text))
         return self
 
     def add_linebreak(self):
@@ -42,22 +57,13 @@ class Markdown():
         self.content += self.create_block("", 1)
         return self
 
-    def add_blockquote(self, text):
+    def add_blockquote(self, *lines):
         """
         Adds a blockquote to the content
-        :param text: The blockquote's text
+        :param lines: A list of text lines
         """
-        self.content += self.create_block("> " + text, 2)
-        return self
-
-    def add_header(self, text, htype=1):
-        """
-        Adds a header block to the content
-        :param text: The headers's text
-        :param htype: The header type || h1(htype=1), h2(htype=2) etc...
-        """
-        string = "".join(["#"] * htype) + " {t}".format(t=text)
-        self.content += self.create_block(string, 2)
+        lines = list(lines)
+        self.content += self.create_block("> " + "  \n".join(lines), 2)
         return self
 
     def add_horizontal_rule(self):
@@ -88,19 +94,35 @@ class Markdown():
         self.content += self.create_block("![{}]({})".format(alt_text, url), 2)
         return self
 
+    def add_table(self, *rows):
+        """
+        Adds a table to the content
+        :param rows: List of table rows. First one being the header row.
+        """
+        contents = list(rows)
+        for i, items in enumerate(contents):
+            self.content += "| " + "| ".join(items) + "\n"
+            if i == 0:
+                for item in items:
+                    self.content += "| "
+                    self.content += "".join(["-"] * len(item))
+                self.content += "\n"
+        self.content += "\n"
+        return self
+
     @staticmethod
-    def link(link, text=None):
+    def link(url, text=None):
         """
         Creates a markdown link that can be added in the content
         using the available add_* methods
         ex. markd.add_text(markd.link('https://something.io', 'Get me there!'))
-        :param link: The link url
+        :param url: The link url
         :param text: Optional text to show
 
         :return: A markdown link string
         """
-        linktext = text if text is not None else link
-        return "[{}]({})".format(linktext, link)
+        linktext = text if text is not None else url
+        return "[{}]({})".format(linktext, url)
 
     @staticmethod
     def emphasis(text):

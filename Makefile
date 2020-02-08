@@ -7,9 +7,9 @@ SERVICE_TARGET := pyshipper
 
 # retrieve NAME from /variables.py file
 MODULE_NAME = \
-	$(shell awk -F= '/^NAME\ ?=/{gsub(/\47|"/, "", $$NF);print $$NF;exit}' variables.py)
+	$(shell awk -F= '/^NAME\ ?=/{gsub(/\47|"/, "", $$NF);print $$NF;exit}' variables)
 MODULE_VERSION = \
-	$(shell awk -F= '/^VERSION\ ?=/{gsub(/\47|"/, "", $$NF);print $$NF;exit}' variables.py)
+	$(shell awk -F= '/^VERSION\ ?=/{gsub(/\47|"/, "", $$NF);print $$NF;exit}' variables)
 
 export MODULE_NAME
 
