@@ -8,11 +8,19 @@ A simple python package that faciliates the generation of markdown flavoured fil
 $ pip install markd
 ```
 
-## Methods
+## Usage
+
+### Initialize the module
+
+```python
+from markd import Markdown()
+
+markd = Markdown()
+```
 
 ### Add content blocks
 
-#### add_header(text, htype=1)
+> `add_header(text, htype=1)`
 
 Adds an `htype` header block to the content
 
@@ -21,7 +29,7 @@ markd.add_header("H1")
 markd.add_header("H2", 2)
 ```
 
-#### add_text(text)
+> `add_text(text)`
 
 Adds a text block to the content
 
@@ -29,7 +37,7 @@ Adds a text block to the content
 markd.add_text("Sample text")
 ```
 
-#### add_list_item(text, depth=None)
+> `add_list_item(text, depth=None)`
 
 Adds a list item to the content with the specified `text` and intentation `depth`.
 The `depth` parameter is used to create sublists.
@@ -41,7 +49,7 @@ markd.add_list_item("List item 1.2", 1)
 markd.add_list_item("List item 1.2.1", 2)
 ```
 
-#### add_linebreak()
+> `add_linebreak()`
 
 Adds a linebreak block
 
@@ -49,7 +57,7 @@ Adds a linebreak block
 markd.add_linebreak()
 ```
 
-#### add_blockquote(text)
+> `add_blockquote(text)`
 
 Adds a blockquote with the specified `text`
 
@@ -58,7 +66,7 @@ markd.add_blockquote("This is a blockquote")
 markd.add_blockquote("This is multiline blockquote  \nSecond line  \nThird line")
 ```
 
-#### add_horizontal_rule()
+> `add_horizontal_rule()`
 
 Adds a horizontal rule block
 
@@ -66,7 +74,7 @@ Adds a horizontal rule block
 markd.add_horizontal_rule()
 ```
 
-#### add_code(code)
+> `add_code(code)`
 
 Adds a code block
 
@@ -81,7 +89,7 @@ TypeError: Oups!
 markd.add_code(trace)
 ```
 
-#### add_image(url, alt_text)
+> `add_image(url, alt_text)`
 
 Adds an image using the specified `url` and `alt_text`
 
@@ -91,11 +99,30 @@ markd.add_image("https://myimage.link/image.png", "my image")
 
 ### Utility methods
 
-#### link(url, text=None)
+> `link(url, text=None)`
 
-#### emphasis(text)
+Creates a markdown link that can be added in the content using the available add_* methods
 
-#### italics(text)
+```python
+markd.link("https://test.com", "test")
+
+```
+
+> `emphasis(text)`
+
+Emphasizes a given text
+
+```python
+markd.emphasis("Text to be emphasized")
+```
+
+> `italics(text)`
+
+ Wraps the given text in italics
+
+```python
+markd.italics("Enter text here")
+```
 
 ## Full Example
 
