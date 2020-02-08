@@ -49,7 +49,7 @@ markd.add_list_item("List item 1.2", 1)
 markd.add_list_item("List item 1.2.1", 2)
 ```
 
-> ***add_linebreak()**
+> **add_linebreak()**
 
 Adds a linebreak block
 
@@ -122,6 +122,14 @@ markd.add_text(markd.emphasis("Text to be emphasized"))
 
 ```python
 markd.add_text(markd.italics("Enter text here"))
+```
+
+> **save(filename)**
+
+Saves the file to the specified path
+
+```python
+markd.save("/path/to/save/the/file.md")
 ```
 
 ## Full Example
