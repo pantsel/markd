@@ -20,7 +20,7 @@ markd = Markdown()
 
 ### Add content blocks
 
-> `add_header(text, htype=1)`
+> add_header(text, htype=1)
 
 Adds an `htype` header block to the content
 
