@@ -57,12 +57,13 @@ class Markdown():
         self.content += self.create_block("", 1)
         return self
 
-    def add_blockquote(self, text):
+    def add_blockquote(self, *lines):
         """
         Adds a blockquote to the content
-        :param text: The blockquote's text
+        :param lines: A list of text lines
         """
-        self.content += self.create_block("> " + text, 2)
+        lines = list(lines)
+        self.content += self.create_block("> " + "  \n".join(lines), 2)
         return self
 
     def add_horizontal_rule(self):

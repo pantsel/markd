@@ -57,13 +57,13 @@ Adds a linebreak block
 markd.add_linebreak()
 ```
 
-#### add_blockquote(text)
+#### add_blockquote(*lines)
 
-Adds a blockquote with the specified `text`
+Adds a blockquote with the specified `lines` of text
 
 ```python
 markd.add_blockquote("This is a blockquote")
-markd.add_blockquote("This is multiline blockquote  \nSecond line  \nThird line")
+markd.add_blockquote("This is a", "multi line", "block quote")
 ```
 
 #### add_horizontal_rule()
