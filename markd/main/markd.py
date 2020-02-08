@@ -93,6 +93,22 @@ class Markdown():
         self.content += self.create_block("![{}]({})".format(alt_text, url), 2)
         return self
 
+    def add_table(self, *rows):
+        """
+        Adds a table to the content
+        :param rows: List of table rows. First one being the header row.
+        """
+        contents = list(rows)
+        for i, items in enumerate(contents):
+            self.content += "| " + "| ".join(items) + "\n"
+            if i == 0:
+                for item in items:
+                    self.content += "| "
+                    self.content += "".join(["-"] * len(item))
+                self.content += "\n"
+        self.content += "\n"
+        return self
+
     @staticmethod
     def link(url, text=None):
         """

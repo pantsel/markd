@@ -5,7 +5,7 @@ A simple python package that faciliates the generation of markdown flavoured fil
 ## Installation
 
 ```code
-$ pip install markd
+pip install markd
 ```
 
 ## Usage
@@ -97,6 +97,19 @@ Adds an image using the specified `url` and `alt_text`
 markd.add_image("https://myimage.link/image.png", "my image")
 ```
 
+> **add_table(\*rows)**
+
+Adds a table to the content provided a list of table `rows`.
+The first row in the list, is considered to be the header.
+
+```python
+markd.add_table(
+    ["Header cell 1", "Header cell 2", "Header cell 3"],
+    ["Row 1 cell 1", "Row 1 cell 2", "Row 1 cell 3"],
+    ["Row 2 cell 1", "Row 2 cell 2", "Row 2 cell 3"],
+    )
+```
+
 ### Utility methods
 
 > **link(url, text=None)**
@@ -154,6 +167,11 @@ if __name__ == '__main__':
     markd.add_linebreak()
     markd.add_code("Some code here")
     markd.add_image("https://link.to/image.jpg", "alt-text")
+    markd.add_table(
+    ["Header cell 1", "Header cell 2", "Header cell 3"],
+    ["Row 1 cell 1", "Row 1 cell 2", "Row 1 cell 3"],
+    ["Row 2 cell 1", "Row 2 cell 2", "Row 2 cell 3"],
+    )
     markd.add_horizontal_rule()
     print(markd.content) # Get the content
     markd.save("/path/to/save/the/file.md")

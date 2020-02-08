@@ -1,5 +1,5 @@
 NAME="markd"
-VERSION="0.1.6"
+VERSION="0.1.7"
 AUTHOR="Panagis Tselentis"
 AUTHOR_EMAIL="tselentispanagis@gmail.com"
 DESCRIPTION="A simple python markdown files generator"
