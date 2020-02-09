@@ -7,6 +7,7 @@ Markd is a simple python module that facilitates the generation of Markdown flav
 
 """
 
+from __future__ import annotations
 import os
 import inspect
 import errno
@@ -112,7 +113,7 @@ class Markdown():
         return self
 
     @staticmethod
-    def link(url: str, text: str) -> str:
+    def link(url: str, text: str = '') -> str:
         """
         Creates a markdown link that can be added in the content
         using the available add_* methods
@@ -122,7 +123,7 @@ class Markdown():
 
         :return: A markdown link string
         """
-        linktext = text if text is not None else url
+        linktext = text if text != '' else url
         return "[{}]({})".format(linktext, url)
 
     @staticmethod
