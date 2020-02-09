@@ -10,7 +10,7 @@ Markd is a simple python module that facilitates the generation of Markdown flav
 import os
 import inspect
 import errno
-from typing import *
+from typing import Any, List
 
 class Markdown():
     """
@@ -58,13 +58,13 @@ class Markdown():
         self.content += self.create_block("", 1)
         return self
 
-    def add_blockquote(self, *lines) -> Markdown:
+    def add_blockquote(self, *lines: Any) -> Markdown:
         """
         Adds a blockquote to the content
         :param lines: A list of text lines
         """
-        lines = list(lines)
-        self.content += self.create_block("> " + "  \n".join(lines), 2)
+        _lines: List[str] = list(lines)
+        self.content += self.create_block("> " + "  \n".join(_lines), 2)
         return self
 
     def add_horizontal_rule(self) -> Markdown:
@@ -95,12 +95,12 @@ class Markdown():
         self.content += self.create_block("![{}]({})".format(alt_text, url), 2)
         return self
 
-    def add_table(self, *rows) -> Markdown:
+    def add_table(self, *rows: Any) -> Markdown:
         """
         Adds a table to the content
         :param rows: List of table rows. First one being the header row.
         """
-        contents = list(rows)
+        contents: List[List[str]] = list(rows)
         for i, items in enumerate(contents):
             self.content += "| " + "| ".join(items) + "\n"
             if i == 0:
