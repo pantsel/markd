@@ -16,6 +16,7 @@ CWD = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(CWD, 'README.md'), encoding='utf-8') as f:
     LONG_DESCRIPTION = f.read()
 
+# read the variables file
 if os.path.isfile("variables"):
     try:
         with open("variables", "r") as fh:
