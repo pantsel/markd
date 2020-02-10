@@ -38,7 +38,7 @@ setuptools.setup(
     url=envstring("URL"),
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/markdown",
-    packages=[envstring("NAME"), envstring("NAME") + ".main"],
+    packages=[envstring("NAME")],
     license=envstring("LICENCE"),
     classifiers=[
         'Operating System :: OS Independent',
