@@ -1,7 +1,6 @@
 NAME="markd"
-VERSION="0.1.10"
+VERSION="0.1.17"
 AUTHOR="Panagis Tselentis"
 AUTHOR_EMAIL="tselentispanagis@gmail.com"
 DESCRIPTION="A simple python markdown files generator"
 URL="https://github.com/pantsel/markd"
-LICENCE="GNU General Public License v3 (GPLv3)"
