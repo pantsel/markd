@@ -5,11 +5,13 @@ import os
 import sys
 import shutil
 
-PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-if not PATH in sys.path:
-    sys.path.insert(1, PATH)
-    from markd import Markdown
-del PATH
+from ..main import Markdown
+
+# PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+# if not PATH in sys.path:
+#     sys.path.insert(1, PATH)
+#     from markd import Markdown
+# del PATH
 
 class TestReports(unittest.TestCase):
 
