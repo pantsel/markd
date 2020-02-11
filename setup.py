@@ -13,7 +13,7 @@ def envstring(var):
 
 # read the contents of your README file
 CWD = os.path.abspath(os.path.dirname(__file__))
-with open(os.path.join(CWD, 'README.md'), encoding='utf-8') as f:
+with open(os.path.join(CWD, 'README.md'), "r") as f:
     LONG_DESCRIPTION = f.read()
 
 # read the variables file
