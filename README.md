@@ -1,6 +1,6 @@
 # Markd
 
-A simple python package that facilitates the generation of markdown flavoured files
+A simple python3 package that facilitates the generation of markdown flavoured files
 
 ## Installation
 
